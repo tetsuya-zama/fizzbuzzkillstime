@@ -8,12 +8,12 @@ export type onGameOverCallback = (score: number) => void;
 type FuncObjOf<T> = {fn?: T};
 
 
-export function useFizzBuzz(){
+export function useFizzBuzz(params?:{onCorrectFunc?: onCorrectCallback, onGameOverFunc?: onGameOverCallback}){
     const [currentNum, setCurrentNum] = useState<number>(0);
     const [currentAnswer, setCurrentAnswer] = useState<Answer>(0);
     const [nextAnswer, setNextAnswer] = useState<Answer>(1);
-    const [onCorrect, setOnCorrect] = useState<FuncObjOf<onCorrectCallback>>({fn: undefined});
-    const [onGameOver, setOnGameOver] = useState<FuncObjOf<onGameOverCallback>>({fn: undefined});
+    const [onCorrect, setOnCorrect] = useState<FuncObjOf<onCorrectCallback>>({fn: params?.onCorrectFunc});
+    const [onGameOver, setOnGameOver] = useState<FuncObjOf<onGameOverCallback>>({fn: params?.onGameOverFunc});
 
     const answerOf: (n : number) => Answer = (n: number) => 
         n === 0 ? 0
