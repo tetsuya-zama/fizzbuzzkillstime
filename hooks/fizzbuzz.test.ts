@@ -86,7 +86,7 @@ describe("useFizzBuzz hook",() => {
         const {result} = renderHook(() => useFizzBuzz());
 
         const onGameOver = jest.fn();
-        act(() => result.current.setOnGameOver({fn:onGameOver}));
+        act(() => result.current.setOnGameOver(onGameOver));
 
         act(() => result.current.answer('Fizz'));
 

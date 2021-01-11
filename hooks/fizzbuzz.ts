@@ -1,11 +1,11 @@
 import {useState, useEffect} from 'react';
 
+import {FuncObjOf, funcObjSetterOf} from './funcutil';
+
 export type FizzBuzzAnswer = 'Fizz' | 'Buzz' | 'FizzBuzz';
 export type Answer = number | FizzBuzzAnswer;
 export type onCorrectCallback = (currentNumber: number, currentAnswer: Answer) => void;
 export type onGameOverCallback = (score: number) => void; 
-
-type FuncObjOf<T> = {fn?: T};
 
 
 export function useFizzBuzz(params?:{onCorrectFunc?: onCorrectCallback, onGameOverFunc?: onGameOverCallback}){
@@ -44,8 +44,8 @@ export function useFizzBuzz(params?:{onCorrectFunc?: onCorrectCallback, onGameOv
     return {
         currentNum,
         currentAnswer,
-        setOnCorrect,
-        setOnGameOver,
+        setOnCorrect:funcObjSetterOf(setOnCorrect),
+        setOnGameOver:funcObjSetterOf(setOnGameOver),
         answer
     };
 }
